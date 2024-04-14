@@ -2,6 +2,7 @@ import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 import "./globals.css";
+import { customInitApp } from "@/firebase-admin";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -11,6 +12,8 @@ const fontSans = FontSans({
 type RootLayoutProps = {
   children: ReactNode;
 };
+
+customInitApp();
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (

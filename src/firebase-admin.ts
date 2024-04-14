@@ -1,8 +1,10 @@
-import { initializeApp, credential } from "firebase-admin";
+import { initializeApp, getApps, cert } from "firebase-admin/app";
 import { env } from "./env";
 
-export const app = initializeApp({
-  credential: credential.cert(env.FIREBASE_AUTH_JSON),
-});
-
-export const db = app.firestore();
+export function customInitApp() {
+  if (getApps().length <= 0) {
+    initializeApp({
+      credential: cert(env.FIREBASE_AUTH_JSON),
+    });
+  }
+}
